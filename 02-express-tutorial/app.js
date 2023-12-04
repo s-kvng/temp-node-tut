@@ -1,31 +1,11 @@
 const express = require("express");
-const path = require("path");
+const { products } = require("./data");
 const app = express();
 
-//setup static and middleware
-app.use(express.static("./public"));
-
-// app.get("/", (req, res) => {
-//   res.sendFile(path.resolve(__dirname, "./navbar-app/index.html"));
-//other method include
-//adding index.html to static assets in public
-//SSR
-// });
-
-app.get("/about", (req, res) => {});
-
-app.all("*", (req, res) => {
-  res.status(404).send("<h1>Page Not Found</h1>");
+app.get("/", (req, res) => {
+  res.json(products);
 });
 
 app.listen(5000, () => {
-  console.log("Listening to port: 5000");
+  console.log("Server listening to port: 5000....");
 });
-
-//app.get
-//app.post
-//app.put
-//app.delete
-//app.all
-//app.use
-//app.listen
