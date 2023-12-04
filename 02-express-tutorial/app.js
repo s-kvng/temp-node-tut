@@ -1,21 +1,25 @@
 const express = require("express");
+const path = require("path");
 const app = express();
 
-app.get("/", (req, res) => {
-  console.log("user hit the home page ");
-  res.status(200).send("<h1>Home Page</h1>");
-});
+//setup static and middleware
+app.use(express.static("./public"));
 
-app.get("/about", (req, res) => {
-  res.status(200).send("About page");
-});
+// app.get("/", (req, res) => {
+//   res.sendFile(path.resolve(__dirname, "./navbar-app/index.html"));
+//other method include
+//adding index.html to static assets in public
+//SSR
+// });
+
+app.get("/about", (req, res) => {});
 
 app.all("*", (req, res) => {
-  res.status(404).send("<h1>Resource not found</h1>");
+  res.status(404).send("<h1>Page Not Found</h1>");
 });
 
 app.listen(5000, () => {
-  console.log("Server is listening on port: 5000");
+  console.log("Listening to port: 5000");
 });
 
 //app.get
